@@ -1,4 +1,9 @@
-import { helloWorld } from './hello-world';
+// import { helloWorld } from './hello-world';
 
-const greet = helloWorld();
-console.log(greet);
+// const greet = helloWorld();
+// console.log(greet);
+
+
+
+import { startServer } from './server'; 
+startServer();
