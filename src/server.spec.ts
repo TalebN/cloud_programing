@@ -1,4 +1,4 @@
-const { startServer } = require('./server');
+import { startServer } from './server';
 
 describe('Test de démarrage du serveur', () => {
   let server;
@@ -13,9 +13,9 @@ describe('Test de démarrage du serveur', () => {
     expect(server.address()).toBeDefined();
   });
 
-  afterAll((done) => {
+  afterAll(async () => {
     if (server) {
-      server.close(done);
+      await new Promise((resolve) => server.close(resolve));
     }
   });
 
