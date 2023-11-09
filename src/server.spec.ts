@@ -8,6 +8,7 @@ describe('Test de démarrage du serveur', () => {
   });
 
   it('le serveur démarre sans erreur', () => {
+    expect.assertions(2);
     expect(server).toBeDefined();
     expect(server.address()).toBeDefined();
   });
@@ -19,6 +20,7 @@ describe('Test de démarrage du serveur', () => {
   });
 
   it('répond à la requête /api/v1/sysinfo', async () => {
+    expect.assertions(1);
     expect(true).toBe(true);
   });
 });
