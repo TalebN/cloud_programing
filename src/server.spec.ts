@@ -1,11 +1,20 @@
 import { startServer } from './server';
 
-describe('Test de démarrage du serveur', () => {
-  let server;
+let server;
 
-  beforeAll(() => {
-    server = startServer();
-  });
+beforeAll(() => {
+  server = startServer();
+});
+
+
+afterAll(async () => {
+  if (server) {
+    await new Promise((resolve) => server.close(resolve));
+  }
+});
+
+
+describe('Test de démarrage du serveur', () => {
 
   it('le serveur démarre sans erreur', () => {
     expect.assertions(2);
@@ -13,11 +22,6 @@ describe('Test de démarrage du serveur', () => {
     expect(server.address()).toBeDefined();
   });
 
-  afterAll(async () => {
-    if (server) {
-      await new Promise((resolve) => server.close(resolve));
-    }
-  });
 
   it('répond à la requête /api/v1/sysinfo', async () => {
     expect.assertions(1);
