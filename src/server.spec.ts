@@ -1,20 +1,17 @@
 import { startServer } from './server';
 
-let server;
-
-beforeAll(() => {
-  server = startServer();
-});
-
-
-afterAll(async () => {
-  if (server) {
-    await new Promise((resolve) => server.close(resolve));
-  }
-});
-
-
 describe('Test de démarrage du serveur', () => {
+  let server;
+
+  beforeAll(() => {
+    server = startServer();
+  });
+
+  afterAll(async () => {
+    if (server) {
+      await new Promise((resolve) => server.close(resolve));
+    }
+  });
 
   it('le serveur démarre sans erreur', () => {
     expect.assertions(2);
