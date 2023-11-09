@@ -1,18 +1,15 @@
 import { startServer } from './server';
 
-describe('Test de démarrage du serveur', () => {
+function runTests() {
   let server;
 
-  it('démarre le serveur sans erreur', () => {
-    expect.assertions(2);
-    server = startServer();
-    expect(server).toBeDefined();
-    expect(server.address()).toBeDefined();
-  });
+  function setupServer() {
+    const server = startServer();
+    return server;
+  }
 
-  it('répond à la requête /api/v1/sysinfo', async () => {
-    expect.assertions(1);
-    expect(true).toBe(true);
+  beforeAll(() => {
+    server = setupServer();
   });
 
   afterAll(async () => {
@@ -20,4 +17,19 @@ describe('Test de démarrage du serveur', () => {
       await new Promise((resolve) => server.close(resolve));
     }
   });
-});
+
+  describe('Test de démarrage du serveur', () => {
+    it('le serveur démarre sans erreur', () => {
+      expect.assertions(2);
+      expect(server).toBeDefined();
+      expect(server.address()).toBeDefined();
+    });
+
+    it('répond à la requête /api/v1/sysinfo', async () => {
+      expect.assertions(1);
+      expect(true).toBe(true);
+    });
+  });
+}
+
+runTests();
