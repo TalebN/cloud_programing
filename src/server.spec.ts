@@ -1,15 +1,10 @@
 import { startServer } from './server';
 
-function runTests() {
+describe('Tests globaux', () => {
   let server;
 
-  function setupServer() {
-    const server = startServer();
-    return server;
-  }
-
   beforeAll(() => {
-    server = setupServer();
+    server = startServer();
   });
 
   afterAll(async () => {
@@ -30,6 +25,4 @@ function runTests() {
       expect(true).toBe(true);
     });
   });
-}
-
-runTests();
+});
